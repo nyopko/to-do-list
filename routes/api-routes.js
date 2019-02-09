@@ -41,7 +41,7 @@ module.exports = function (app) {
   app.put("/api/todos/", function (req, res) {
 
     db.item.update({
-
+      text: req.body.text,
       complete: req.body.complete
     },
 
@@ -50,8 +50,8 @@ module.exports = function (app) {
           id: req.body.id
         }
 
-      }).then(function () {
-        res.end();
+      }).then(function (dbItem) {
+        res.json(dbItem);
       });
   });
 };
