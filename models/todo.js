@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes) {
       text: {
           type: DataTypes.STRING,
           validate: {
-              allowNull: false,
               notEmpty: true,
               len: [1, 140]
           }
