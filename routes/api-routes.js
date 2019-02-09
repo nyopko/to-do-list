@@ -26,10 +26,16 @@ module.exports = function (app) {
   // DELETE route for deleting todos. We can access the ID of the todo to delete in
   // req.params.id
   app.delete("/api/todos/:id", function (req, res) {
-    // orm.deleteTodo(req.params.id, function(results) {
-    //   res.json(results);
-    // });
+
+    db.item.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function () {
+      res.end();
+    });
   });
+
 
   // PUT route for updating todos. We can access the updated todo in req.body
   app.put("/api/todos", function (req, res) {
