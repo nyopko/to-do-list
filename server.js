@@ -5,6 +5,11 @@
 // *** Dependencies
 // =============================================================
 var express = require("express");
+var Sequelize = require("sequelize");
+
+var db = require("./models");
+
+db.sequelize.sync();
 
 // Sets up the Express App
 // =============================================================
