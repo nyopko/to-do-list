@@ -9,7 +9,6 @@ var Sequelize = require("sequelize");
 
 var db = require("./models");
 
-db.sequelize.sync();
 
 // Sets up the Express App
 // =============================================================
@@ -27,8 +26,12 @@ app.use(express.static("public"));
 // =============================================================
 require("./routes/api-routes.js")(app);
 
+db.sequelize.sync().then(function(){
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
+
 // Starting our Express app
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
+
